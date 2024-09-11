@@ -4,11 +4,17 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vmin;
+  height: 100vmax;
  }
 
  @media screen and (min-width: 1400px) {
   .grid {
     background-position: top;
+  }
+}
+
+@media screen and (min-width: 1000px){
+  .grid {
+    height: 100vmin;
   }
 }
