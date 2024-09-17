@@ -35,7 +35,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ToastModule,
     ChartModule,
 
-    // Shared module, criado na aula 38
+    // Shared module, criado na aula 38 - Essa configuração permite o component dashboard enchergar o app-toolbar-navigation
     SharedModule
   ],
   providers: [MessageService, CookieService]
