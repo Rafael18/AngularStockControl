@@ -1,1 +1,19 @@
 <app-toolbar-navigation></app-toolbar-navigation>
+
+<div class="grid">
+  <div class="col-12">
+    <!-- GRÁFICO DE PRODUTOS EM ESTOQUE -->
+     <p-card
+      header="Quantidade de produtos em estoque"
+      styleClass="shadow-3 m-5 text-indigo-800"
+      >
+
+      <p-chart
+      type="bar"
+      [data]="productChartData"
+      [options]="productChartOptions">
+      </p-chart>
+
+     </p-card>
+  </div>
+</div>

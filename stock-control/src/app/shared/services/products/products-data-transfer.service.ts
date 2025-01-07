@@ -26,11 +26,11 @@ export class ProductsDataTransferService {
       .subscribe({
         next: (response) =>{
           if(response){
-            this.productsDatas = response
+            this.productsDatas = response;
           }
         }
       });
 
-    return this.productsDatas
+    return this.productsDatas;
   }
 }

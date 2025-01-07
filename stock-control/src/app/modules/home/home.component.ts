@@ -1,11 +1,12 @@
 import { AuthRequest } from '../../models/interfaces/user/auth/AuthRequest';
+import { SignupUserRequest } from 'src/app/models/interfaces/user/SignupUserRequest';
 import { UserService } from './../../services/user/user.service';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
-import { SignupUserRequest } from 'src/app/models/interfaces/user/SignupUserRequest';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { SignupUserRequest } from 'src/app/models/interfaces/user/SignupUserRequ
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  private destroy$ = new Subject<void>();
   loginCard = true;
 
   loginForm = this.formBuilder.group({
@@ -37,6 +39,7 @@ export class HomeComponent {
   onSubmitLoginForm(): void {
     if (this.loginForm.value && this.loginForm.valid) {
       this.UserService.authUser(this.loginForm.value as AuthRequest)
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) =>{
           if (response){
@@ -69,6 +72,7 @@ export class HomeComponent {
   onSubmitSignupForm(): void {
     if (this.signupForm.value && this.signupForm.valid) {
       this.UserService.signupUser(this.signupForm.value as SignupUserRequest)
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
           if (response) {
@@ -97,6 +101,11 @@ export class HomeComponent {
         }
       })
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

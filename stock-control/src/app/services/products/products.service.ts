@@ -29,10 +29,8 @@ export class ProductsService {
     return this.http.get<Array<GetAllProductsResponse>>(
       `${this.API_URL}/products`, this.httpOptions
     )
-
     .pipe(
       map((product) => product.filter((data) => data?.amount > 0))
     )
   }
-
 }
