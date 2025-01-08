@@ -14,11 +14,11 @@ export class ProductsDataTransferService {
    setProductsData(products: Array<GetAllProductsResponse>): void{
     if(products){
       this.productsDataEmitter$.next(products);
-      this.getProductsData();
+      this.getProductsDatas();
     }
    }
 
-  getProductsData() {
+  getProductsDatas() {
     this.productsDataEmitter$.pipe(
       take(1),
       map((product) => product?.filter((data) => data.amount > 0))
