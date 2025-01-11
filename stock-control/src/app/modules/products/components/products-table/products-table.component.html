@@ -164,6 +164,7 @@
               class="p-button-rounded p-button-danger"
               pTooltip="Remover Produto"
               tooltipPosition="top"
+              (click)="handleDeleteProduct(product?.id, product.name)"
             ></button>
           </div>
         </td>
